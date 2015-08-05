@@ -1,0 +1,114 @@
+---
+title       : Estimated Stopping Distances (ESD)
+subtitle    : For Cars Of The 1920s
+author      : Marc Genty
+job         : Coursera JHU Data Products Student
+framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+hitheme     : tomorrow      # 
+widgets     : [mathjax]     # {mathjax, quiz, bootstrap}
+mode        : selfcontained # {standalone, draft}
+knit        : slidify::knit2slides
+---
+
+## Introducing The ESD Shiny App! 
+
+```{r, echo=FALSE}
+library(ggplot2)
+library(datasets)
+```
+
+### Scenario:
+
+You need a new car and have a great opportunity to purchase 
+a "slightly used" 1920 Model T Ford. However, you also live
+in Los Angeles, California where stop-and-go traffic is the
+norm, and you are concerned that the stopping distance of
+this car (with a top speed of 25 mph) will be too long for
+the mean streets of LA.
+
+### Solution:  
+
+The ESD (Estimated Stopping Distance) Shiny App is here 
+to help! You simply select the top speed you expect to 
+reach while driving the freeways of LA (somewhere between 
+5 mph and 25 mph), and the shiny app will instanteously 
+calculate and report the estimated stopping distance 
+based on the linear model fitted to the data in the 
+cars dataset. Yes, it's that easy.
+
+--- .class #id 
+
+## The Model Beneath The ESD Shiny App
+
+The following figure shows the cars dataset 
+(from the R datasets package) fitted with a 
+simple linear regression model.  
+
+```{r, echo = FALSE, fig.width = 12, fig.height = 6}
+ggplot(cars, aes(x = speed, y = dist)) + 
+    geom_point(colour = "steelblue") +
+    labs(title = "Speed vs. Stopping Distance Of Cars In The 1920s") +
+    labs(x = "Speed (mph)", y = "Stopping Distance (ft)") +
+    geom_smooth(method = "lm", colour = "red", se = TRUE)
+```
+
+--- 
+
+## ESD Shiny App Model Details
+
+```{r, echo=FALSE}
+## The Model:
+mod <- lm(dist ~ speed, data = cars)
+## The Fit:
+rsquared <- round(summary(mod)$r.squared * 100, 2)
+corcoeff <- round(sqrt(summary(mod)$r.squared), 4)
+## The Betas:
+beta0 <- round(summary(mod)$coeff[1], 2)
+beta1 <- round(summary(mod)$coeff[2], 2)
+```
+
+The linear equation for the regression line is: 
+distance = `r beta0` + `r beta1` * speed. 
+The linear equation appears to be a reasonably good 
+fit with a correlation coefficient (r) of `r corcoeff`. 
+Additionally, the model accounts for  ~`r rsquared`% 
+of the variation in the stopping distances.  
+
+The residuals plot below shows one possible point of concern.
+It appears as though the data may be fanning out from left to
+right. Ideally it would be good to have more than `r nrow(cars)` 
+observations in the dataset to be able to confirm whether or not 
+this is a legitimate concern.
+
+```{r, echo=FALSE, fig.width=8, fig.height=4}
+# Residuals vs Explanatory
+resDF <- data.frame("speed" = cars$speed, "residuals" = mod$residuals)
+ggplot(resDF, aes(x = speed, y = residuals)) + 
+    geom_point(colour = "steelblue") +
+    labs(title = "Speed vs. Residuals") +
+    labs(x = "Speed", y = "Residuals") +
+    geom_hline(aes(yintercept = 0), colour = "magenta", linetype = 2)
+```
+
+--- 
+    
+## Further Reading & Thoughts
+
+### Source:
+
+Ezekiel, M. (1930) *Methods of Correlation Analysis*. Wiley.
+
+### References:
+
+McNeil, D. R. (1977) *Interactive Data Analysis*. Wiley.
+
+### Next Steps:
+
+The linear model accounts for ~`r round(rsquared, 0)`% 
+of the variation in the stopping distances. Other models 
+(e.g., polynomial) might do even better at accounting 
+for more of the variation. Also, the possible non-random 
+scatter of the residuals about the x-axis in the residuals 
+plot suggests that a simple linear model may not be the 
+most appropriate for this data.

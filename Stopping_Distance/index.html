@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Estimated Stopping Distances (ESD)</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Estimated Stopping Distances (ESD)">
+  <meta name="author" content="Marc Genty">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Estimated Stopping Distances (ESD)</h1>
+    <h2>For Cars Of The 1920s</h2>
+    <p>Marc Genty<br/>Coursera JHU Data Products Student</p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>Introducing The ESD Shiny App!</h2>
+  </hgroup>
+  <article data-timings="">
+    <h3>Scenario:</h3>
+
+<p>You need a new car and have a great opportunity to purchase 
+a &quot;slightly used&quot; 1920 Model T Ford. However, you also live
+in Los Angeles, California where stop-and-go traffic is the
+norm, and you are concerned that the stopping distance of
+this car (with a top speed of 25 mph) will be too long for
+the mean streets of LA.</p>
+
+<h3>Solution:</h3>
+
+<p>The ESD (Estimated Stopping Distance) Shiny App is here 
+to help! You simply select the top speed you expect to 
+reach while driving the freeways of LA (somewhere between 
+5 mph and 25 mph), and the shiny app will instanteously 
+calculate and report the estimated stopping distance 
+based on the linear model fitted to the data in the 
+cars dataset. Yes, it&#39;s that easy.</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>The Model Beneath The ESD Shiny App</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>The following figure shows the cars dataset 
+(from the R datasets package) fitted with a 
+simple linear regression model.  </p>
+
+<p><img src="assets/fig/unnamed-chunk-2-1.png" alt="plot of chunk unnamed-chunk-2"> </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-3" style="background:;">
+  <hgroup>
+    <h2>ESD Shiny App Model Details</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>The linear equation for the regression line is: 
+distance = -17.58 + 3.93 * speed. 
+The linear equation appears to be a reasonably good 
+fit with a correlation coefficient (r) of 0.8069. 
+Additionally, the model accounts for  ~65.11% 
+of the variation in the stopping distances.  </p>
+
+<p>The residuals plot below shows one possible point of concern.
+It appears as though the data may be fanning out from left to
+right. Ideally it would be good to have more than 50 
+observations in the dataset to be able to confirm whether or not 
+this is a legitimate concern.</p>
+
+<p><img src="assets/fig/unnamed-chunk-4-1.png" alt="plot of chunk unnamed-chunk-4"> </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>Further Reading &amp; Thoughts</h2>
+  </hgroup>
+  <article data-timings="">
+    <h3>Source:</h3>
+
+<p>Ezekiel, M. (1930) <em>Methods of Correlation Analysis</em>. Wiley.</p>
+
+<h3>References:</h3>
+
+<p>McNeil, D. R. (1977) <em>Interactive Data Analysis</em>. Wiley.</p>
+
+<h3>Next Steps:</h3>
+
+<p>The linear model accounts for ~65% 
+of the variation in the stopping distances. Other models 
+(e.g., polynomial) might do even better at accounting 
+for more of the variation. Also, the possible non-random 
+scatter of the residuals about the x-axis in the residuals 
+plot suggests that a simple linear model may not be the 
+most appropriate for this data.</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='Introducing The ESD Shiny App!'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='The Model Beneath The ESD Shiny App'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='ESD Shiny App Model Details'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Further Reading &amp; Thoughts'>
+         4
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- MathJax: Fall back to local if CDN offline but local image fonts are not supported (saves >100MB) -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true
+      }
+    });
+  </script>
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <!-- <script src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script> -->
+  <script>window.MathJax || document.write('<script type="text/x-mathjax-config">MathJax.Hub.Config({"HTML-CSS":{imageFont:null}});<\/script><script src="libraries/widgets/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"><\/script>')
+</script>
+<!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
